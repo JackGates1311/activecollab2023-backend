@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 /**
  * @method static find(int $int)
+ * @method static create(array $all)
  */
 class Tasks extends Model
 {
