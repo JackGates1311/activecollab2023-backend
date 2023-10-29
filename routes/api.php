@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\TaskController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,17 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/getTasks/{id}', [TaskController::class, 'show']);
-Route::get('/getTaskLists', [TaskController::class, 'getTaskLists']);
-Route::get('/getTasks', [TaskController::class, 'getTasks']);
-Route::get('/getLabels', [TaskController::class, 'getLabels']);
-Route::get('/getAssignee', [TaskController::class, 'getAssignee']);
-Route::post('/addNewTask', [TaskController::class, 'addNewTask']);
-Route::post('/addNewTaskList', [TaskController::class, 'addNewTaskList']);
-Route::put('/deleteTaskList', [TaskController::class, 'deleteTaskList']);
-Route::patch('/completeTaskList/{id}', [TaskController::class, 'completeTaskList']);
-Route::patch('/sortTaskList', [TaskController::class, 'sortTaskList']);
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/getTasks/{id}', [TaskController::class, 'show']);
+    Route::get('/getTaskLists', [TaskController::class, 'getTaskLists']);
+    Route::get('/getTasks', [TaskController::class, 'getTasks']);
+    Route::get('/getLabels', [TaskController::class, 'getLabels']);
+    Route::get('/getAssignee', [TaskController::class, 'getAssignee']);
+    Route::post('/addNewTask', [TaskController::class, 'addNewTask']);
+    Route::post('/addNewTaskList', [TaskController::class, 'addNewTaskList']);
+    Route::put('/deleteTaskList', [TaskController::class, 'deleteTaskList']);
+    Route::patch('/completeTaskList/{id}', [TaskController::class, 'completeTaskList']);
+    Route::patch('/sortTaskList', [TaskController::class, 'sortTaskList']);
 });
+
+Route::post('/login', [TaskController::class, 'login']);
 
